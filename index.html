@@ -1,52 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>By Breed — Supplements Tailored to Your Dog's DNA</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sky: #4DA8DA;
+  --sky-light: #7DC4E8;
+  --sky-pale: #B8DFF0;
+  --sky-wash: #E8F4FA;
+  --sky-whisper: #F2F9FC;
+  --ice: #FFFFFF;
+  --navy: #1A3A4A;
+  --navy-light: #2D5A6E;
+  --charcoal: #2C3E50;
+  --warm: #F5A623;
+  --warm-light: #FFD180;
+  --coral: #FF6B6B;
+  --mint: #7ECEC1;
+  --lavender: #B8A9D4;
+  --peach: #FFB088;
+  --shadow: rgba(77, 168, 218, 0.12);
+  --shadow-deep: rgba(26, 58, 74, 0.08);
+}
+ 
+* { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+html { scroll-behavior: smooth; }
+ 
+body {
+  font-family: 'Nunito', sans-serif;
+  color: var(--charcoal);
+  background: var(--ice);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+ 
+/* ─── UTILITY ─── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section-label {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--sky);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 42px);
+  color: var(--navy);
+  line-height: 1.2;
+}
+.section-subtitle {
+  font-size: 16px;
+  color: var(--navy-light);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-top: 12px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-primary {
+  background: var(--sky);
+  color: var(--ice);
+  box-shadow: 0 4px 20px rgba(77, 168, 218, 0.35);
+}
+.btn-primary:hover {
+  background: var(--navy-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(77, 168, 218, 0.4);
+}
+.btn-secondary {
+  background: var(--ice);
+  color: var(--sky);
+  border: 2px solid var(--sky-pale);
+}
+.btn-secondary:hover {
+  background: var(--sky-wash);
+  border-color: var(--sky);
+}
+.btn-warm {
+  background: var(--warm);
+  color: var(--ice);
+  box-shadow: 0 4px 20px rgba(245, 166, 35, 0.35);
+}
+.btn-warm:hover {
+  background: #e09520;
+  transform: translateY(-2px);
+}
+ 
+/* ─── ANNOUNCEMENT BAR ─── */
+.announcement {
+  background: var(--navy);
+  color: var(--ice);
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.announcement span { color: var(--warm-light); }
+ 
+/* ─── HEADER ─── */
+header {
+  background: var(--ice);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 20px var(--shadow-deep);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, var(--sky), var(--sky-light));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 4px 12px rgba(77, 168, 218, 0.3);
+}
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 24px;
+  color: var(--navy);
+}
+.logo-text em {
+  font-style: normal;
+  color: var(--sky);
+}
+nav { display: flex; align-items: center; gap: 32px; }
+nav a {
+  text-decoration: none;
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+  position: relative;
+}
+nav a:hover { color: var(--sky); }
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--sky);
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+nav a:hover::after { width: 100%; }
+.header-actions { display: flex; align-items: center; gap: 20px; }
+.header-actions a {
+  text-decoration: none;
+  color: var(--navy);
+  font-size: 20px;
+  transition: color 0.2s;
+}
+.header-actions a:hover { color: var(--sky); }
+.cart-badge {
+  position: relative;
+}
+.cart-badge::after {
+  content: '2';
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  width: 18px;
+  height: 18px;
+  background: var(--warm);
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+/* ─── HERO ─── */
+.hero {
+  background: linear-gradient(170deg, var(--sky-whisper) 0%, var(--sky-wash) 40%, var(--ice) 100%);
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(77, 168, 218, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(126, 206, 193, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.hero-content { max-width: 520px; }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ice);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sky);
+  box-shadow: 0 2px 12px var(--shadow);
+  margin-bottom: 24px;
+  animation: fadeSlideUp 0.8s ease forwards;
+}
+.hero-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--mint);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.3); }
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(36px, 5vw, 56px);
+  color: var(--navy);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  animation: fadeSlideUp 0.8s 0.1s ease both;
+}
+.hero h1 .highlight {
+  color: var(--sky);
+  position: relative;
+}
+.hero h1 .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: var(--sky-pale);
+  opacity: 0.4;
+  border-radius: 4px;
+  z-index: -1;
+}
+.hero p {
+  font-size: 17px;
+  color: var(--navy-light);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  animation: fadeSlideUp 0.8s 0.2s ease both;
+}
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeSlideUp 0.8s 0.3s ease both;
+}
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 48px;
+  animation: fadeSlideUp 0.8s 0.4s ease both;
+}
+.hero-stat strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--navy);
+}
+.hero-stat span {
+  font-size: 13px;
+  color: var(--navy-light);
+  font-weight: 600;
+}
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeSlideUp 0.8s 0.2s ease both;
+}
+.hero-card {
+  background: var(--ice);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 20px 60px var(--shadow), 0 4px 20px var(--shadow-deep);
+  max-width: 420px;
+  width: 100%;
+}
+.hero-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.breed-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+.breed-avatar.golden { background: linear-gradient(135deg, #FFE4B5, #FFD180); }
+.breed-info h3 {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--navy);
+}
+.breed-info span {
+  font-size: 13px;
+  color: var(--navy-light);
+}
+.supplement-list { display: flex; flex-direction: column; gap: 12px; }
+.supplement-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--sky-whisper);
+  transition: all 0.3s;
+}
+.supplement-item:hover {
+  background: var(--sky-wash);
+  transform: translateX(4px);
+}
+.supp-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.supp-icon.joint { background: linear-gradient(135deg, var(--sky-pale), var(--sky-light)); }
+.supp-icon.gut { background: linear-gradient(135deg, var(--mint), #A8E6CF); }
+.supp-icon.coat { background: linear-gradient(135deg, var(--warm-light), var(--peach)); }
+.supp-icon.heart { background: linear-gradient(135deg, var(--lavender), #D4C5F0); }
+.supp-details h4 { font-weight: 700; font-size: 14px; color: var(--navy); }
+.supp-details span { font-size: 12px; color: var(--navy-light); }
+.hero-float-badge {
+  position: absolute;
+  background: var(--ice);
+  padding: 10px 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px var(--shadow);
+  font-size: 13px;
+  font-weight: 700;
+  animation: float 3s ease-in-out infinite;
+}
+.hero-float-badge.top-right {
+  top: 10px;
+  right: -20px;
+  color: var(--mint);
+}
+.hero-float-badge.bottom-left {
+  bottom: 20px;
+  left: -30px;
+  color: var(--warm);
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+ 
+/* ─── TRUST BAR ─── */
+.trust-bar {
+  background: var(--ice);
+  border-top: 1px solid var(--sky-wash);
+  border-bottom: 1px solid var(--sky-wash);
+  padding: 24px 0;
+}
+.trust-bar .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy-light);
+}
+.trust-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--sky-wash);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+ 
+/* ─── SHOP BY BREED ─── */
+.breeds {
+  padding: 80px 0;
+  background: var(--ice);
+}
+.breeds-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.breeds-header .section-subtitle { margin: 12px auto 0; }
+.breed-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+.breed-card {
+  background: var(--sky-whisper);
+  border-radius: 20px;
+  padding: 28px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  border: 2px solid transparent;
+}
+.breed-card:hover {
+  background: var(--ice);
+  border-color: var(--sky-pale);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px var(--shadow);
+}
+.breed-emoji {
+  font-size: 48px;
+  margin-bottom: 12px;
+  display: block;
+  transition: transform 0.3s;
+}
+.breed-card:hover .breed-emoji { transform: scale(1.15); }
+.breed-card h3 {
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.breed-card span {
+  font-size: 12px;
+  color: var(--navy-light);
+}
+.breed-card .product-count {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 12px;
+  background: var(--sky-wash);
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--sky);
+}
+ 
+/* ─── BEST SELLERS ─── */
+.bestsellers {
+  padding: 80px 0;
+  background: linear-gradient(180deg, var(--sky-whisper), var(--ice));
+}
+.bestsellers-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.product-card {
+  background: var(--ice);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 12px var(--shadow-deep);
+  cursor: pointer;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px var(--shadow);
+}
+.product-img {
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 72px;
+  position: relative;
+  overflow: hidden;
+}
+.product-img.hip { background: linear-gradient(145deg, #E8F4FA, #D1ECF5); }
+.product-img.probiotic { background: linear-gradient(145deg, #E8FAF0, #C8F0DA); }
+.product-img.omega { background: linear-gradient(145deg, #FFF4E5, #FFE4C4); }
+.product-img.calming { background: linear-gradient(145deg, #F0E8FA, #DFD1F5); }
+.product-img.multi { background: linear-gradient(145deg, #FAE8E8, #F5D1D1); }
+.product-img.allergy { background: linear-gradient(145deg, #E8FAFA, #D1F0F0); }
+.product-img.dental { background: linear-gradient(145deg, #F5FAE8, #E8F5D1); }
+.product-img.senior { background: linear-gradient(145deg, #FAF0E8, #F0DFD1); }
+.product-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+.product-badge.best { background: var(--warm); color: var(--ice); }
+.product-badge.new { background: var(--mint); color: var(--ice); }
+.product-body { padding: 20px; }
+.product-breed-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: var(--sky-wash);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--sky);
+  margin-bottom: 8px;
+}
+.product-body h3 {
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--navy);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.product-body .desc {
+  font-size: 13px;
+  color: var(--navy-light);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.product-price {
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--navy);
+}
+.product-price .original {
+  font-size: 14px;
+  color: #aaa;
+  text-decoration: line-through;
+  font-weight: 600;
+  margin-left: 6px;
+}
+.add-to-cart {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--sky);
+  color: var(--ice);
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.add-to-cart:hover {
+  background: var(--navy);
+  transform: scale(1.1);
+}
+.stars { color: var(--warm); font-size: 12px; margin-bottom: 10px; }
+ 
+/* ─── HOW IT WORKS ─── */
+.how-it-works {
+  padding: 80px 0;
+  background: var(--ice);
+}
+.how-header { text-align: center; margin-bottom: 56px; }
+.how-header .section-subtitle { margin: 12px auto 0; }
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  position: relative;
+}
+.steps-grid::before {
+  content: '';
+  position: absolute;
+  top: 50px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--sky-pale), var(--sky), var(--sky-pale));
+  z-index: 0;
+}
+.step-card {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.step-number {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 20px;
+  box-shadow: 0 8px 24px var(--shadow);
+}
+.step-number.s1 { background: linear-gradient(135deg, var(--sky), var(--sky-light)); }
+.step-number.s2 { background: linear-gradient(135deg, var(--mint), #A8E6CF); }
+.step-number.s3 { background: linear-gradient(135deg, var(--warm), var(--warm-light)); }
+.step-card h3 {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.step-card p {
+  font-size: 14px;
+  color: var(--navy-light);
+  line-height: 1.6;
+  max-width: 280px;
+  margin: 0 auto;
+}
+ 
+/* ─── SHOP BY BENEFIT ─── */
+.benefits {
+  padding: 80px 0;
+  background: linear-gradient(180deg, var(--sky-whisper), var(--ice));
+}
+.benefits-header { text-align: center; margin-bottom: 48px; }
+.benefits-header .section-subtitle { margin: 12px auto 0; }
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.benefit-card {
+  padding: 28px 24px;
+  border-radius: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: all 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  border: 2px solid transparent;
+  background: var(--ice);
+  box-shadow: 0 2px 12px var(--shadow-deep);
+}
+.benefit-card:hover {
+  border-color: var(--sky-pale);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px var(--shadow);
+}
+.benefit-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.benefit-icon.bi1 { background: linear-gradient(135deg, var(--sky-pale), var(--sky-wash)); }
+.benefit-icon.bi2 { background: linear-gradient(135deg, #C8F0DA, #E8FAF0); }
+.benefit-icon.bi3 { background: linear-gradient(135deg, var(--warm-light), #FFF4E5); }
+.benefit-icon.bi4 { background: linear-gradient(135deg, #D4C5F0, #F0E8FA); }
+.benefit-icon.bi5 { background: linear-gradient(135deg, #F5D1D1, #FAE8E8); }
+.benefit-icon.bi6 { background: linear-gradient(135deg, #D1F0F0, #E8FAFA); }
+.benefit-text h3 {
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.benefit-text p {
+  font-size: 13px;
+  color: var(--navy-light);
+  line-height: 1.5;
+}
+ 
+/* ─── SUBSCRIBE & SAVE ─── */
+.subscribe {
+  padding: 80px 0;
+  background: var(--ice);
+}
+.subscribe-card {
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  border-radius: 28px;
+  padding: 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.subscribe-card::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(77, 168, 218, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.subscribe-card::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -40px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(126, 206, 193, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.subscribe-content { position: relative; z-index: 1; }
+.subscribe-content .section-label { color: var(--sky-light); }
+.subscribe-content .section-title { color: var(--ice); }
+.subscribe-content p {
+  color: var(--sky-pale);
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 16px 0 32px;
+}
+.subscribe-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+.perk {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,0.08);
+  padding: 18px 20px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.perk-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(77, 168, 218, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
 .perk-text h4 { color: var(--ice); font-weight: 700; font-size: 15px; }
 .perk-text span { color: var(--sky-pale); font-size: 13px; }
-.quiz { padding: 80px 0; background: linear-gradient(180deg, var(--sky-whisper), var(--ice)); }
-.quiz-card { background: var(--ice); border-radius: 28px; padding: 64px; text-align: center; box-shadow: 0 12px 48px var(--shadow); border: 2px solid var(--sky-wash); }
+ 
+/* ─── QUIZ CTA ─── */
+.quiz {
+  padding: 80px 0;
+  background: linear-gradient(180deg, var(--sky-whisper), var(--ice));
+}
+.quiz-card {
+  background: var(--ice);
+  border-radius: 28px;
+  padding: 64px;
+  text-align: center;
+  box-shadow: 0 12px 48px var(--shadow);
+  border: 2px solid var(--sky-wash);
+}
 .quiz-emoji { font-size: 64px; margin-bottom: 24px; display: block; }
 .quiz-card .section-title { margin-bottom: 12px; }
-.quiz-card p { font-size: 16px; color: var(--navy-light); max-width: 480px; margin: 0 auto 32px; line-height: 1.7; }
-.quiz-breeds { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 24px; }
-.quiz-breed-bubble { width: 48px; height: 48px; border-radius: 50%; background: var(--sky-wash); display: flex; align-items: center; justify-content: center; font-size: 22px; border: 2px solid var(--ice); box-shadow: 0 2px 8px var(--shadow-deep); }
-.reviews { padding: 80px 0; background: var(--ice); }
+.quiz-card p {
+  font-size: 16px;
+  color: var(--navy-light);
+  max-width: 480px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+.quiz-breeds {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+.quiz-breed-bubble {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--sky-wash);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  border: 2px solid var(--ice);
+  box-shadow: 0 2px 8px var(--shadow-deep);
+}
+ 
+/* ─── REVIEWS ─── */
+.reviews {
+  padding: 80px 0;
+  background: var(--ice);
+}
 .reviews-header { text-align: center; margin-bottom: 48px; }
 .reviews-header .section-subtitle { margin: 12px auto 0; }
-.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.review-card { background: var(--sky-whisper); border-radius: 20px; padding: 28px; transition: all 0.3s; }
-.review-card:hover { background: var(--ice); box-shadow: 0 12px 36px var(--shadow); }
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.review-card {
+  background: var(--sky-whisper);
+  border-radius: 20px;
+  padding: 28px;
+  transition: all 0.3s;
+}
+.review-card:hover {
+  background: var(--ice);
+  box-shadow: 0 12px 36px var(--shadow);
+}
 .review-stars { color: var(--warm); font-size: 16px; margin-bottom: 14px; }
-.review-card p { font-size: 15px; color: var(--navy); line-height: 1.6; margin-bottom: 16px; font-style: italic; }
-.review-author { display: flex; align-items: center; gap: 12px; }
-.review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--sky-wash); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.review-card p {
+  font-size: 15px;
+  color: var(--navy);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.review-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--sky-wash);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
 .review-name { font-weight: 800; font-size: 14px; color: var(--navy); }
 .review-breed { font-size: 12px; color: var(--navy-light); }
-footer { background: var(--navy); color: var(--ice); padding: 64px 0 32px; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+ 
+/* ─── FOOTER ─── */
+footer {
+  background: var(--navy);
+  color: var(--ice);
+  padding: 64px 0 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
 .footer-brand .logo-text { color: var(--ice); font-size: 22px; }
 .footer-brand .logo-text em { color: var(--sky-light); }
-.footer-brand p { color: var(--sky-pale); font-size: 14px; line-height: 1.7; margin-top: 12px; max-width: 300px; }
-.footer-social { display: flex; gap: 12px; margin-top: 20px; }
-.footer-social a { width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 16px; transition: background 0.3s; }
+.footer-brand p {
+  color: var(--sky-pale);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-top: 12px;
+  max-width: 300px;
+}
+.footer-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background 0.3s;
+}
 .footer-social a:hover { background: var(--sky); }
-.footer-col h4 { font-weight: 800; font-size: 14px; margin-bottom: 16px; color: var(--ice); }
-.footer-col a { display: block; color: var(--sky-pale); text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s; }
+.footer-col h4 {
+  font-weight: 800;
+  font-size: 14px;
+  margin-bottom: 16px;
+  color: var(--ice);
+}
+.footer-col a {
+  display: block;
+  color: var(--sky-pale);
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
 .footer-col a:hover { color: var(--ice); }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: var(--sky-pale); }
-@media (max-width: 1024px) { .hero .container { grid-template-columns: 1fr; } .hero-visual { display: none; } .breed-grid { grid-template-columns: repeat(3, 1fr); } .product-grid { grid-template-columns: repeat(2, 1fr); } .subscribe-card { grid-template-columns: 1fr; padding: 40px; } .footer-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 768px) { .breed-grid { grid-template-columns: repeat(2, 1fr); } .steps-grid { grid-template-columns: 1fr; gap: 24px; } .steps-grid::before { display: none; } .benefits-grid { grid-template-columns: 1fr; } .reviews-grid { grid-template-columns: 1fr; } nav { display: none; } .hero-stats { gap: 24px; } .quiz-card { padding: 40px 24px; } }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--sky-pale);
+}
+ 
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .hero .container { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .breed-grid { grid-template-columns: repeat(3, 1fr); }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .subscribe-card { grid-template-columns: 1fr; padding: 40px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .breed-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: 1fr; gap: 24px; }
+  .steps-grid::before { display: none; }
+  .benefits-grid { grid-template-columns: 1fr; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  nav { display: none; }
+  .hero-stats { gap: 24px; }
+  .quiz-card { padding: 40px 24px; }
+}
 </style>
 </head>
 <body>
-<div class="announcement">Free Shipping on Orders $49+ &nbsp;|&nbsp; <span>Subscribe & Save 30%</span> &nbsp;|&nbsp; Vet-Formulated for Every Breed</div>
-<header><div class="header-inner"><a href="#" class="logo"><div class="logo-icon">🐾</div><div class="logo-text">By<em>Breed</em></div></a><nav><a href="#">Shop by Breed</a><a href="#">Supplements</a><a href="#">Best Sellers</a><a href="#">Our Science</a><a href="#">Breed Quiz</a></nav><div class="header-actions"><a href="#">🔍</a><a href="#">👤</a><a href="#" class="cart-badge">🛒</a></div></div></header>
-<section class="hero"><div class="container"><div class="hero-content"><div class="hero-badge"><span class="hero-badge-dot"></span>Breed-Specific Formulas</div><h1>Supplements Made for <span class="highlight">Their Breed</span>, Not Just Any Dog</h1><p>Every breed is unique. Our vet-formulated supplements are tailored to your dog’s specific genetic needs — from Golden Retriever hip support to Frenchie breathing health.</p><div class="hero-ctas"><a href="#" class="btn btn-primary">Take the Breed Quiz →</a><a href="#" class="btn btn-secondary">Shop All Breeds</a></div><div class="hero-stats"><div class="hero-stat"><strong>150+</strong><span>Breeds Covered</span></div><div class="hero-stat"><strong>50K+</strong><span>Happy Pups</span></div><div class="hero-stat"><strong>4.9★</strong><span>Avg Rating</span></div></div></div><div class="hero-visual"><div class="hero-card"><div class="hero-card-header"><div class="breed-avatar golden">🐕</div><div class="breed-info"><h3>Golden Retriever Pack</h3><span>Personalized • 4 Supplements</span></div></div><div class="supplement-list"><div class="supplement-item"><div class="supp-icon joint">🦴</div><div class="supp-details"><h4>Hip & Joint Pro</h4><span>Glucosamine + MSM + Chondroitin</span></div></div><div class="supplement-item"><div class="supp-icon gut">🌿</div><div class="supp-details"><h4>Digestive Enzymes</h4><span>Probiotics + Pumpkin + Fiber</span></div></div><div class="supplement-item"><div class="supp-icon coat">✨</div><div class="supp-details"><h4>Skin & Coat Omega</h4><span>Wild Alaskan Salmon Oil + Biotin</span></div></div><div class="supplement-item"><div class="supp-icon heart">❤️</div><div class="supp-details"><h4>Heart Health Support</h4><span>CoQ10 + Taurine + L-Carnitine</span></div></div></div></div><div class="hero-float-badge top-right">✅ Vet Approved</div><div class="hero-float-badge bottom-left">🔥 #1 for Goldens</div></div></div></section>
-<div class="trust-bar"><div class="container"><div class="trust-item"><div class="trust-icon">🏥</div>Vet-Formulated</div><div class="trust-item"><div class="trust-icon">🧪</div>Science-Backed</div><div class="trust-item"><div class="trust-icon">🇺🇸</div>Made in USA</div><div class="trust-item"><div class="trust-icon">🌱</div>Natural Ingredients</div><div class="trust-item"><div class="trust-icon">💎</div>NASC Certified</div></div></div>
-<section class="breeds"><div class="container"><div class="breeds-header"><div class="section-label">Popular Breeds</div><h2 class="section-title">Find Your Breed’s Formula</h2><p class="section-subtitle">Tailored nutrition based on breed-specific health risks, size, and genetic predispositions.</p></div><div class="breed-grid"><a href="#" class="breed-card"><span class="breed-emoji">🐕</span><h3>Golden Retriever</h3><span>Joint & Heart</span><div class="product-count">12 Products</div></a><a href="#" class="breed-card"><span class="breed-emoji">🦮</span><h3>Labrador</h3><span>Weight & Joint</span><div class="product-count">14 Products</div></a><a href="#" class="breed-card"><span class="breed-emoji">🐶</span><h3>French Bulldog</h3><span>Breathing & Skin</span><div class="product-count">10 Products</div></a><a href="#" class="breed-card"><span class="breed-emoji">🐺</span><h3>German Shepherd</h3><span>Hip & Digestion</span><div class="product-count">13 Products</div></a><a href="#" class="breed-card"><span class="breed-emoji">🐩</span><h3>Poodle</h3><span>Coat & Eye</span><div class="product-count">9 Products</div></a><a href="#" class="breed-card"><span class="breed-emoji">🐻</span><h3>Bulldog</h3><span>Skin & Joint</span><div class="product-count">11 Products</div></a></div></div></section>
-<section class="bestsellers"><div class="container"><div class="bestsellers-header"><div><div class="section-label">Best Sellers</div><h2 class="section-title">Most Loved by Pet Parents</h2></div><a href="#" class="btn btn-secondary">View All Products →</a></div><div class="product-grid"><div class="product-card"><div class="product-img hip"><span class="product-badge best">BEST SELLER</span>🦴</div><div class="product-body"><div class="product-breed-tag">🐕 Golden Retriever</div><div class="stars">★★★★★ (2,847)</div><h3>Hip & Joint Pro Chews</h3><p class="desc">Advanced glucosamine formula for large breed joints</p><div class="product-footer"><div class="product-price">$29.99 <span class="original">$39.99</span></div><button class="add-to-cart">+</button></div></div></div><div class="product-card"><div class="product-img probiotic"><span class="product-badge new">NEW</span>🌿</div><div class="product-body"><div class="product-breed-tag">🐶 French Bulldog</div><div class="stars">★★★★★ (1,523)</div><h3>Probiotic Bites</h3><p class="desc">8-strain probiotic blend for sensitive stomachs</p><div class="product-footer"><div class="product-price">$27.99</div><button class="add-to-cart">+</button></div></div></div><div class="product-card"><div class="product-img omega">🐟</div><div class="product-body"><div class="product-breed-tag">🐩 Poodle</div><div class="stars">★★★★★ (3,102)</div><h3>Omega 3-6-9 Bites</h3><p class="desc">Wild Alaskan salmon oil for a lustrous coat</p><div class="product-footer"><div class="product-price">$24.99</div><button class="add-to-cart">+</button></div></div></div><div class="product-card"><div class="product-img calming"><span class="product-badge best">BEST SELLER</span>🌜</div><div class="product-body"><div class="product-breed-tag">🐺 German Shepherd</div><div class="stars">★★★★☆ (1,891)</div><h3>Calming Soft Chews</h3><p class="desc">L-Theanine + chamomile for anxious breeds</p><div class="product-footer"><div class="product-price">$26.99 <span class="original">$34.99</span></div><button class="add-to-cart">+</button></div></div></div></div></div></section>
-<section class="how-it-works"><div class="container"><div class="how-header"><div class="section-label">How It Works</div><h2 class="section-title">Personalized in 3 Steps</h2><p class="section-subtitle">Get a custom supplement plan tailored to your dog’s breed, age, and health goals.</p></div><div class="steps-grid"><div class="step-card"><div class="step-number s1">🐾</div><h3>Tell Us Your Breed</h3><p>Take our 2-minute quiz. Share your dog’s breed, age, weight, and any health concerns.</p></div><div class="step-card"><div class="step-number s2">🧬</div><h3>We Match the Science</h3><p>Our vets analyze breed-specific health data to create your personalized supplement pack.</p></div><div class="step-card"><div class="step-number s3">📦</div><h3>Delivered Monthly</h3><p>Your custom pack arrives at your door every month. Adjust, pause, or cancel anytime.</p></div></div></div></section>
-<section class="benefits"><div class="container"><div class="benefits-header"><div class="section-label">Shop by Benefit</div><h2 class="section-title">Target What Matters Most</h2><p class="section-subtitle">Every formula is designed to address breed-specific health concerns.</p></div><div class="benefits-grid"><a href="#" class="benefit-card"><div class="benefit-icon bi1">🦴</div><div class="benefit-text"><h3>Hip & Joint</h3><p>Glucosamine, MSM, and chondroitin for mobility support in large breeds.</p></div></a><a href="#" class="benefit-card"><div class="benefit-icon bi2">🌿</div><div class="benefit-text"><h3>Gut Health</h3><p>Probiotics and enzymes for breeds prone to digestive sensitivity.</p></div></a><a href="#" class="benefit-card"><div class="benefit-icon bi3">✨</div><div class="benefit-text"><h3>Skin & Coat</h3><p>Omega fatty acids and biotin for breeds with allergy-prone skin.</p></div></a><a href="#" class="benefit-card"><div class="benefit-icon bi4">🧠</div><div class="benefit-text"><h3>Calming & Anxiety</h3><p>L-Theanine and melatonin for high-energy and anxious breeds.</p></div></a><a href="#" class="benefit-card"><div class="benefit-icon bi5">❤️</div><div class="benefit-text"><h3>Heart Health</h3><p>CoQ10 and taurine for breeds predisposed to cardiac issues.</p></div></a><a href="#" class="benefit-card"><div class="benefit-icon bi6">👁️</div><div class="benefit-text"><h3>Eye & Vision</h3><p>Lutein and bilberry for breeds susceptible to eye conditions.</p></div></a></div></div></section>
-<section class="subscribe"><div class="container"><div class="subscribe-card"><div class="subscribe-content"><div class="section-label">Subscribe & Save</div><h2 class="section-title">Save 30% With Monthly Delivery</h2><p>Never run out of your pup’s supplements. Get their personalized breed pack delivered every month with free shipping and full flexibility.</p><a href="#" class="btn btn-warm">Start a Subscription →</a></div><div class="subscribe-perks"><div class="perk"><div class="perk-icon">💰</div><div class="perk-text"><h4>30% Off Every Order</h4><span>The biggest savings, automatically applied</span></div></div><div class="perk"><div class="perk-icon">🚚</div><div class="perk-text"><h4>Free Shipping Always</h4><span>No minimums, no exceptions</span></div></div><div class="perk"><div class="perk-icon">🔄</div><div class="perk-text"><h4>Skip, Pause, or Cancel</h4><span>Full control from your account dashboard</span></div></div><div class="perk"><div class="perk-icon">🎁</div><div class="perk-text"><h4>Subscriber-Only Extras</h4><span>Early access to new breed formulas</span></div></div></div></div></div></section>
-<section class="quiz"><div class="container"><div class="quiz-card"><span class="quiz-emoji">🧬</span><div class="section-label">Breed Quiz</div><h2 class="section-title">Not Sure Where to Start?</h2><p>Answer 5 quick questions about your dog and we’ll recommend the perfect breed-specific supplement pack — backed by veterinary science.</p><a href="#" class="btn btn-primary">Take the Quiz — It’s Free →</a><div class="quiz-breeds"><div class="quiz-breed-bubble">🐕</div><div class="quiz-breed-bubble">🐶</div><div class="quiz-breed-bubble">🐺</div><div class="quiz-breed-bubble">🐩</div><div class="quiz-breed-bubble">🐻</div><div class="quiz-breed-bubble">🦮</div></div></div></div></section>
-<section class="reviews"><div class="container"><div class="reviews-header"><div class="section-label">Real Results</div><h2 class="section-title">Loved by 50,000+ Pet Parents</h2><p class="section-subtitle">See what dog owners are saying about their breed-specific supplement packs.</p></div><div class="reviews-grid"><div class="review-card"><div class="review-stars">★★★★★</div><p>"My Golden is 9 years old and was struggling with stairs. After 3 weeks on the Hip & Joint pack, she’s bouncing around like a puppy again!"</p><div class="review-author"><div class="review-avatar">👩</div><div><div class="review-name">Sarah M.</div><div class="review-breed">Golden Retriever Mom</div></div></div></div><div class="review-card"><div class="review-stars">★★★★★</div><p>"Finally, supplements that understand Frenchies! The breathing support and probiotic combo has been a game-changer for our little guy."</p><div class="review-author"><div class="review-avatar">👨</div><div><div class="review-name">Mike T.</div><div class="review-breed">French Bulldog Dad</div></div></div></div><div class="review-card"><div class="review-stars">★★★★★</div><p>"I love that the quiz recommended exactly what my GSD needs. The calming chews + digestive enzymes combo is perfect. He actually likes them too!"</p><div class="review-author"><div class="review-avatar">👩</div><div><div class="review-name">Jennifer L.</div><div class="review-breed">German Shepherd Owner</div></div></div></div></div></div></section>
-<footer><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="logo-text">By<em>Breed</em></div><p>Vet-formulated supplements tailored to your dog’s breed, genetics, and unique health needs. Because every breed deserves their own formula.</p><div class="footer-social"><a href="#">📷</a><a href="#">🐦</a><a href="#">📱</a><a href="#">▶️</a></div></div><div class="footer-col"><h4>Shop</h4><a href="#">All Breeds</a><a href="#">Best Sellers</a><a href="#">New Arrivals</a><a href="#">Subscribe & Save</a><a href="#">Gift Cards</a></div><div class="footer-col"><h4>Learn</h4><a href="#">Our Science</a><a href="#">Breed Health Guides</a><a href="#">Ingredient Glossary</a><a href="#">Vet Advisory Board</a><a href="#">Blog</a></div><div class="footer-col"><h4>Help</h4><a href="#">Contact Us</a><a href="#">FAQs</a><a href="#">Shipping & Returns</a><a href="#">Track Order</a><a href="#">Manage Subscription</a></div></div><div class="footer-bottom"><span>© 2026 ByBreed. All rights reserved.</span><span>Privacy Policy &nbsp;|&nbsp; Terms of Service &nbsp;|&nbsp; Accessibility</span></div></div></footer>
+ 
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement">
+  Free Shipping on Orders $49+ &nbsp;|&nbsp; <span>Subscribe & Save 30%</span> &nbsp;|&nbsp; Vet-Formulated for Every Breed
+</div>
+ 
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">&#x1F43E;</div>
+      <div class="logo-text">By<em>Breed</em></div>
+    </a>
+    <nav>
+      <a href="#">Shop by Breed</a>
+      <a href="#">Supplements</a>
+      <a href="#">Best Sellers</a>
+      <a href="#">Our Science</a>
+      <a href="#">Breed Quiz</a>
+    </nav>
+    <div class="header-actions">
+      <a href="#">&#x1F50D;</a>
+      <a href="#">&#x1F464;</a>
+      <a href="#" class="cart-badge">&#x1F6D2;</a>
+    </div>
+  </div>
+</header>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Breed-Specific Formulas
+      </div>
+      <h1>Supplements Made for <span class="highlight">Their Breed</span>, Not Just Any Dog</h1>
+      <p>Every breed is unique. Our vet-formulated supplements are tailored to your dog's specific genetic needs — from Golden Retriever hip support to Frenchie breathing health.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn btn-primary">Take the Breed Quiz &#x2192;</a>
+        <a href="#" class="btn btn-secondary">Shop All Breeds</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong>150+</strong>
+          <span>Breeds Covered</span>
+        </div>
+        <div class="hero-stat">
+          <strong>50K+</strong>
+          <span>Happy Pups</span>
+        </div>
+        <div class="hero-stat">
+          <strong>4.9&#9733;</strong>
+          <span>Avg Rating</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <div class="breed-avatar golden">&#x1F415;</div>
+          <div class="breed-info">
+            <h3>Golden Retriever Pack</h3>
+            <span>Personalized • 4 Supplements</span>
+          </div>
+        </div>
+        <div class="supplement-list">
+          <div class="supplement-item">
+            <div class="supp-icon joint">&#x1F9B4;</div>
+            <div class="supp-details">
+              <h4>Hip & Joint Pro</h4>
+              <span>Glucosamine + MSM + Chondroitin</span>
+            </div>
+          </div>
+          <div class="supplement-item">
+            <div class="supp-icon gut">&#x1F33F;</div>
+            <div class="supp-details">
+              <h4>Digestive Enzymes</h4>
+              <span>Probiotics + Pumpkin + Fiber</span>
+            </div>
+          </div>
+          <div class="supplement-item">
+            <div class="supp-icon coat">&#x2728;</div>
+            <div class="supp-details">
+              <h4>Skin & Coat Omega</h4>
+              <span>Wild Alaskan Salmon Oil + Biotin</span>
+            </div>
+          </div>
+          <div class="supplement-item">
+            <div class="supp-icon heart">&#x2764;&#xFE0F;</div>
+            <div class="supp-details">
+              <h4>Heart Health Support</h4>
+              <span>CoQ10 + Taurine + L-Carnitine</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-float-badge top-right">&#x2705; Vet Approved</div>
+      <div class="hero-float-badge bottom-left">&#x1F525; #1 for Goldens</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-item">
+      <div class="trust-icon">&#x1F3E5;</div>
+      Vet-Formulated
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">&#x1F9EA;</div>
+      Science-Backed
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">&#x1F1FA;&#x1F1F8;</div>
+      Made in USA
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">&#x1F331;</div>
+      Natural Ingredients
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">&#x1F48E;</div>
+      NASC Certified
+    </div>
+  </div>
+</div>
+ 
+<!-- SHOP BY BREED -->
+<section class="breeds">
+  <div class="container">
+    <div class="breeds-header">
+      <div class="section-label">Popular Breeds</div>
+      <h2 class="section-title">Find Your Breed's Formula</h2>
+      <p class="section-subtitle">Tailored nutrition based on breed-specific health risks, size, and genetic predispositions.</p>
+    </div>
+    <div class="breed-grid">
+      <a href="#" class="breed-card">
+        <span class="breed-emoji">&#x1F415;</span>
+        <h3>Golden Retriever</h3>
+        <span>Joint & Heart</span>
+        <div class="product-count">12 Products</div>
+      </a>
+      <a href="#" class="breed-card">
+        <span class="breed-emoji">&#x1F9AE;</span>
+        <h3>Labrador</h3>
+        <span>Weight & Joint</span>
+        <div class="product-count">14 Products</div>
+      </a>
+      <a href="#" class="breed-card">
+        <span class="breed-emoji">&#x1F436;</span>
+        <h3>French Bulldog</h3>
+        <span>Breathing & Skin</span>
+        <div class="product-count">10 Products</div>
+      </a>
+      <a href="#" class="breed-card">
+        <span class="breed-emoji">&#x1F43A;</span>
+        <h3>German Shepherd</h3>
+        <span>Hip & Digestion</span>
+        <div class="product-count">13 Products</div>
+      </a>
+      <a href="#" class="breed-card">
+        <span class="breed-emoji">&#x1F429;</span>
+        <h3>Poodle</h3>
+        <span>Coat & Eye</span>
+        <div class="product-count">9 Products</div>
+      </a>
+      <a href="#" class="breed-card">
+        <span class="breed-emoji">&#x1F43B;</span>
+        <h3>Bulldog</h3>
+        <span>Skin & Joint</span>
+        <div class="product-count">11 Products</div>
+      </a>
+    </div>
+  </div>
+</section>
+ 
+<!-- BEST SELLERS -->
+<section class="bestsellers">
+  <div class="container">
+    <div class="bestsellers-header">
+      <div>
+        <div class="section-label">Best Sellers</div>
+        <h2 class="section-title">Most Loved by Pet Parents</h2>
+      </div>
+      <a href="#" class="btn btn-secondary">View All Products &#x2192;</a>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img hip">
+          <span class="product-badge best">BEST SELLER</span>
+          &#x1F9B4;
+        </div>
+        <div class="product-body">
+          <div class="product-breed-tag">&#x1F415; Golden Retriever</div>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; (2,847)</div>
+          <h3>Hip & Joint Pro Chews</h3>
+          <p class="desc">Advanced glucosamine formula for large breed joints</p>
+          <div class="product-footer">
+            <div class="product-price">$29.99 <span class="original">$39.99</span></div>
+            <button class="add-to-cart">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img probiotic">
+          <span class="product-badge new">NEW</span>
+          &#x1F33F;
+        </div>
+        <div class="product-body">
+          <div class="product-breed-tag">&#x1F436; French Bulldog</div>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; (1,523)</div>
+          <h3>Probiotic Bites</h3>
+          <p class="desc">8-strain probiotic blend for sensitive stomachs</p>
+          <div class="product-footer">
+            <div class="product-price">$27.99</div>
+            <button class="add-to-cart">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img omega">
+          &#x1F41F;
+        </div>
+        <div class="product-body">
+          <div class="product-breed-tag">&#x1F429; Poodle</div>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; (3,102)</div>
+          <h3>Omega 3-6-9 Bites</h3>
+          <p class="desc">Wild Alaskan salmon oil for a lustrous coat</p>
+          <div class="product-footer">
+            <div class="product-price">$24.99</div>
+            <button class="add-to-cart">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img calming">
+          <span class="product-badge best">BEST SELLER</span>
+          &#x1F31C;
+        </div>
+        <div class="product-body">
+          <div class="product-breed-tag">&#x1F43A; German Shepherd</div>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; (1,891)</div>
+          <h3>Calming Soft Chews</h3>
+          <p class="desc">L-Theanine + chamomile for anxious breeds</p>
+          <div class="product-footer">
+            <div class="product-price">$26.99 <span class="original">$34.99</span></div>
+            <button class="add-to-cart">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+  <div class="container">
+    <div class="how-header">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Personalized in 3 Steps</h2>
+      <p class="section-subtitle">Get a custom supplement plan tailored to your dog's breed, age, and health goals.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number s1">&#x1F43E;</div>
+        <h3>Tell Us Your Breed</h3>
+        <p>Take our 2-minute quiz. Share your dog's breed, age, weight, and any health concerns.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number s2">&#x1F9EC;</div>
+        <h3>We Match the Science</h3>
+        <p>Our vets analyze breed-specific health data to create your personalized supplement pack.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number s3">&#x1F4E6;</div>
+        <h3>Delivered Monthly</h3>
+        <p>Your custom pack arrives at your door every month. Adjust, pause, or cancel anytime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- SHOP BY BENEFIT -->
+<section class="benefits">
+  <div class="container">
+    <div class="benefits-header">
+      <div class="section-label">Shop by Benefit</div>
+      <h2 class="section-title">Target What Matters Most</h2>
+      <p class="section-subtitle">Every formula is designed to address breed-specific health concerns.</p>
+    </div>
+    <div class="benefits-grid">
+      <a href="#" class="benefit-card">
+        <div class="benefit-icon bi1">&#x1F9B4;</div>
+        <div class="benefit-text">
+          <h3>Hip & Joint</h3>
+          <p>Glucosamine, MSM, and chondroitin for mobility support in large breeds.</p>
+        </div>
+      </a>
+      <a href="#" class="benefit-card">
+        <div class="benefit-icon bi2">&#x1F33F;</div>
+        <div class="benefit-text">
+          <h3>Gut Health</h3>
+          <p>Probiotics and enzymes for breeds prone to digestive sensitivity.</p>
+        </div>
+      </a>
+      <a href="#" class="benefit-card">
+        <div class="benefit-icon bi3">&#x2728;</div>
+        <div class="benefit-text">
+          <h3>Skin & Coat</h3>
+          <p>Omega fatty acids and biotin for breeds with allergy-prone skin.</p>
+        </div>
+      </a>
+      <a href="#" class="benefit-card">
+        <div class="benefit-icon bi4">&#x1F9E0;</div>
+        <div class="benefit-text">
+          <h3>Calming & Anxiety</h3>
+          <p>L-Theanine and melatonin for high-energy and anxious breeds.</p>
+        </div>
+      </a>
+      <a href="#" class="benefit-card">
+        <div class="benefit-icon bi5">&#x2764;&#xFE0F;</div>
+        <div class="benefit-text">
+          <h3>Heart Health</h3>
+          <p>CoQ10 and taurine for breeds predisposed to cardiac issues.</p>
+        </div>
+      </a>
+      <a href="#" class="benefit-card">
+        <div class="benefit-icon bi6">&#x1F441;&#xFE0F;</div>
+        <div class="benefit-text">
+          <h3>Eye & Vision</h3>
+          <p>Lutein and bilberry for breeds susceptible to eye conditions.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+ 
+<!-- SUBSCRIBE & SAVE -->
+<section class="subscribe">
+  <div class="container">
+    <div class="subscribe-card">
+      <div class="subscribe-content">
+        <div class="section-label">Subscribe & Save</div>
+        <h2 class="section-title">Save 30% With Monthly Delivery</h2>
+        <p>Never run out of your pup's supplements. Get their personalized breed pack delivered every month with free shipping and full flexibility.</p>
+        <a href="#" class="btn btn-warm">Start a Subscription &#x2192;</a>
+      </div>
+      <div class="subscribe-perks">
+        <div class="perk">
+          <div class="perk-icon">&#x1F4B0;</div>
+          <div class="perk-text">
+            <h4>30% Off Every Order</h4>
+            <span>The biggest savings, automatically applied</span>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">&#x1F69A;</div>
+          <div class="perk-text">
+            <h4>Free Shipping Always</h4>
+            <span>No minimums, no exceptions</span>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">&#x1F504;</div>
+          <div class="perk-text">
+            <h4>Skip, Pause, or Cancel</h4>
+            <span>Full control from your account dashboard</span>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">&#x1F381;</div>
+          <div class="perk-text">
+            <h4>Subscriber-Only Extras</h4>
+            <span>Early access to new breed formulas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- QUIZ CTA -->
+<section class="quiz">
+  <div class="container">
+    <div class="quiz-card">
+      <span class="quiz-emoji">&#x1F9EC;</span>
+      <div class="section-label">Breed Quiz</div>
+      <h2 class="section-title">Not Sure Where to Start?</h2>
+      <p>Answer 5 quick questions about your dog and we'll recommend the perfect breed-specific supplement pack — backed by veterinary science.</p>
+      <a href="#" class="btn btn-primary">Take the Quiz — It's Free &#x2192;</a>
+      <div class="quiz-breeds">
+        <div class="quiz-breed-bubble">&#x1F415;</div>
+        <div class="quiz-breed-bubble">&#x1F436;</div>
+        <div class="quiz-breed-bubble">&#x1F43A;</div>
+        <div class="quiz-breed-bubble">&#x1F429;</div>
+        <div class="quiz-breed-bubble">&#x1F43B;</div>
+        <div class="quiz-breed-bubble">&#x1F9AE;</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="container">
+    <div class="reviews-header">
+      <div class="section-label">Real Results</div>
+      <h2 class="section-title">Loved by 50,000+ Pet Parents</h2>
+      <p class="section-subtitle">See what dog owners are saying about their breed-specific supplement packs.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"My Golden is 9 years old and was struggling with stairs. After 3 weeks on the Hip & Joint pack, she's bouncing around like a puppy again!"</p>
+        <div class="review-author">
+          <div class="review-avatar">&#x1F469;</div>
+          <div>
+            <div class="review-name">Sarah M.</div>
+            <div class="review-breed">Golden Retriever Mom</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"Finally, supplements that understand Frenchies! The breathing support and probiotic combo has been a game-changer for our little guy."</p>
+        <div class="review-author">
+          <div class="review-avatar">&#x1F468;</div>
+          <div>
+            <div class="review-name">Mike T.</div>
+            <div class="review-breed">French Bulldog Dad</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"I love that the quiz recommended exactly what my GSD needs. The calming chews + digestive enzymes combo is perfect. He actually likes them too!"</p>
+        <div class="review-author">
+          <div class="review-avatar">&#x1F469;</div>
+          <div>
+            <div class="review-name">Jennifer L.</div>
+            <div class="review-breed">German Shepherd Owner</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-text">By<em>Breed</em></div>
+        <p>Vet-formulated supplements tailored to your dog's breed, genetics, and unique health needs. Because every breed deserves their own formula.</p>
+        <div class="footer-social">
+          <a href="#">&#x1F4F7;</a>
+          <a href="#">&#x1F426;</a>
+          <a href="#">&#x1F4F1;</a>
+          <a href="#">&#x25B6;&#xFE0F;</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="#">All Breeds</a>
+        <a href="#">Best Sellers</a>
+        <a href="#">New Arrivals</a>
+        <a href="#">Subscribe & Save</a>
+        <a href="#">Gift Cards</a>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <a href="#">Our Science</a>
+        <a href="#">Breed Health Guides</a>
+        <a href="#">Ingredient Glossary</a>
+        <a href="#">Vet Advisory Board</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <a href="#">Contact Us</a>
+        <a href="#">FAQs</a>
+        <a href="#">Shipping & Returns</a>
+        <a href="#">Track Order</a>
+        <a href="#">Manage Subscription</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ByBreed. All rights reserved.</span>
+      <span>Privacy Policy &nbsp;|&nbsp; Terms of Service &nbsp;|&nbsp; Accessibility</span>
+    </div>
+  </div>
+</footer>
+ 
 </body>
 </html>
